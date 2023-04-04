@@ -9,5 +9,26 @@ message TestGrpcApiRouteRequest {
 }
 
 message TestGrpcApiRouteResponse {
-  string response = 1;
+  string message = 1;
 }
+
+// rpc GetDetection (GetDetectionRequest) returns (GetDetectionResponse);
+
+// message GetDetectionRequest {
+//   string message = 1;
+// }
+
+// message GetDetectionResponse {
+//   string response = 1;
+// }
+
+// message Coordinates {
+//   float lat = 1;
+//   float lon = 2;
+// }
+
+// message Detection {
+//  int32 id = 1;
+//  string category = 2;
+//  Coordinates coords = 3;
+// }
