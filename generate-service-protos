@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+echo "Generating python service libraries..."
+
+rm -rf ./sdks/python
+mkdir -p ./sdks/python/protos
+touch ./sdks/python/__init__.py
+touch ./sdks/python/protos/__init__.py
+
+docker run --rm -v $(pwd):$(pwd) -w $(pwd) rvolosatovs/protoc:4.0.0-rc5 \
+--plugin=protoc-gen-grpc=/usr/bin/grpc_python_plugin \
+--proto_path=./protos \
+--python_out=./sdks/python \
+--grpc_out=./sdks/python \
+./protos/*.proto
+
+rm -rf ../protos
+cp -R ./sdks/python ../
+
+echo "Generating service libraries..."
+
+echo "Complete generating service libraries."
+

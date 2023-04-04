@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+service TestGrpcService {
+  rpc TestGrpcApiRoute (TestGrpcApiRouteRequest) returns (TestGrpcApiRouteResponse);
+}
+
+message TestGrpcApiRouteRequest {
+  string message = 1;
+}
+
+message TestGrpcApiRouteResponse {
+  string response = 1;
+}
