@@ -6,12 +6,7 @@ rm -rf ./sdks/python
 mkdir -p ./sdks/python
 touch ./sdks/python/__init__.py
 
-docker run --rm -v $(pwd):$(pwd) -w $(pwd) rvolosatovs/protoc:4.0.0-rc5 \
---plugin=protoc-gen-grpc=/usr/bin/grpc_python_plugin \
---proto_path=./protos \
---python_out=./sdks/python \
---grpc_out=./sdks/python \
-./protos/*.proto
+python -m grpc_tools.protoc -I. --proto_path=. ./test_grpc_service.proto --python_out=. --grpc_python_out=.
 
 rm -rf ../protos
 cp -R ./sdks/python ../

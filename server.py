@@ -2,8 +2,8 @@ import asyncio
 import logging
 
 import grpc
-from sdks.python import test_grpc_service_pb2
-from sdks.python import test_grpc_service_pb2_grpc
+from protos import test_grpc_service_pb2
+from protos import test_grpc_service_pb2_grpc
 
 class TestGrpcService(test_grpc_service_pb2_grpc.TestGrpcServiceServicer):
 
@@ -12,7 +12,6 @@ class TestGrpcService(test_grpc_service_pb2_grpc.TestGrpcServiceServicer):
 
     def TestGrpcApiRoute(self, request, unused_context) -> test_grpc_service_pb2.TestGrpcApiRouteResponse:
         print(request)
-        print(f"Request: {request['message']}")
 
         response = test_grpc_service_pb2.TestGrpcApiRouteResponse(message="PONG")
 
