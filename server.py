@@ -1,21 +1,8 @@
 import asyncio
 import logging
-
 import grpc
-from protos import test_grpc_service_pb2
-from protos import test_grpc_service_pb2_grpc
-
-class TestGrpcService(test_grpc_service_pb2_grpc.TestGrpcServiceServicer):
-
-    def __init__(self) -> None:
-        self.num_calls = 0
-
-    def TestGrpcApiRoute(self, request, unused_context) -> test_grpc_service_pb2.TestGrpcApiRouteResponse:
-        print(request)
-
-        response = test_grpc_service_pb2.TestGrpcApiRouteResponse(message="PONG")
-
-        return response
+import test_grpc_service_pb2_grpc
+from libs.grpc_service import TestGrpcService
 
 async def serve() -> None:
     server = grpc.aio.server()

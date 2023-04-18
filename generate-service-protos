@@ -2,16 +2,7 @@
 
 echo "Generating python service libraries..."
 
-rm -rf ./sdks/python
-mkdir -p ./sdks/python
-touch ./sdks/python/__init__.py
-
 python -m grpc_tools.protoc -I. --proto_path=. ./test_grpc_service.proto --python_out=. --grpc_python_out=.
-
-rm -rf ../protos
-cp -R ./sdks/python ../
-
-echo "Generating service libraries..."
 
 echo "Complete generating service libraries."
 

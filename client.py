@@ -1,12 +1,11 @@
 from __future__ import print_function
 
 import logging
-import random
 
 import grpc
 
-from protos import test_grpc_service_pb2
-from protos import test_grpc_service_pb2_grpc
+import test_grpc_service_pb2
+import test_grpc_service_pb2_grpc
 
 def call_grpc_api(stub):
     request = test_grpc_service_pb2.TestGrpcApiRouteRequest(message="PING")
