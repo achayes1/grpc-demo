@@ -19,8 +19,16 @@ const client = new TestGrpcService(
   grpc.credentials.createInsecure()
 );
 
-client.TestGrpcApiRoute({message: "ping"}, (error, data) => {
-    if (error) throw error
-    const { message } = data
-    console.log(message);
-});
+function callGrpcApi () {
+    client.TestGrpcApiRoute({message: "ping"}, (error, data) => {
+        if (error) throw error
+        const { message } = data
+        console.log(message);
+    });
+}
+
+function main () {
+    callGrpcApi()
+}
+
+main()
