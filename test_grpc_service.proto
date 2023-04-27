@@ -2,6 +2,8 @@ syntax = "proto3";
 
 service TestGrpcService {
   rpc TestGrpcApiRoute (TestGrpcApiRouteRequest) returns (TestGrpcApiRouteResponse);
+  rpc AuthenticateUserMFA (AuthenticateUserMFARequest) returns (AuthenticateUserMFAResponse);
+  rpc AuthenticateUserMFACode (AuthenticateUserMFACodeRequest) returns (AuthenticateUserMFACodeResponse);
 }
 
 message TestGrpcApiRouteRequest {
@@ -12,45 +14,28 @@ message TestGrpcApiRouteResponse {
   string message = 1;
 }
 
+message AuthenticateUserMFARequest {
+  string email = 1;
+  string password = 2;
+}
 
+message AuthenticateUserMFAResponse {
+  User user = 1;
+  bool valid = 2;
+}
 
+message AuthenticateUserMFACodeRequest {
+  string email = 1;
+  int32 code = 2;
+}
 
+message AuthenticateUserMFACodeResponse {
+  User user = 1;
+  bool valid = 2;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// rpc AuthenticateUser (AuthenticateUserRequest) returns (AuthenticateUserResponse);
-
-// message AuthenticateUserRequest {
-
-// }
-
-// message AuthenticateUserResponse {
-
-// }
-
-// message User {
-
-// }
+message User {
+  int32 id = 1;
+  string first = 2;
+  string last = 3;
+}

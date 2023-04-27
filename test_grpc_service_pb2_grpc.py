@@ -19,12 +19,34 @@ class TestGrpcServiceStub(object):
                 request_serializer=test__grpc__service__pb2.TestGrpcApiRouteRequest.SerializeToString,
                 response_deserializer=test__grpc__service__pb2.TestGrpcApiRouteResponse.FromString,
                 )
+        self.AuthenticateUserMFA = channel.unary_unary(
+                '/TestGrpcService/AuthenticateUserMFA',
+                request_serializer=test__grpc__service__pb2.AuthenticateUserMFARequest.SerializeToString,
+                response_deserializer=test__grpc__service__pb2.AuthenticateUserMFAResponse.FromString,
+                )
+        self.AuthenticateUserMFACode = channel.unary_unary(
+                '/TestGrpcService/AuthenticateUserMFACode',
+                request_serializer=test__grpc__service__pb2.AuthenticateUserMFACodeRequest.SerializeToString,
+                response_deserializer=test__grpc__service__pb2.AuthenticateUserMFACodeResponse.FromString,
+                )
 
 
 class TestGrpcServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def TestGrpcApiRoute(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def AuthenticateUserMFA(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def AuthenticateUserMFACode(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -37,6 +59,16 @@ def add_TestGrpcServiceServicer_to_server(servicer, server):
                     servicer.TestGrpcApiRoute,
                     request_deserializer=test__grpc__service__pb2.TestGrpcApiRouteRequest.FromString,
                     response_serializer=test__grpc__service__pb2.TestGrpcApiRouteResponse.SerializeToString,
+            ),
+            'AuthenticateUserMFA': grpc.unary_unary_rpc_method_handler(
+                    servicer.AuthenticateUserMFA,
+                    request_deserializer=test__grpc__service__pb2.AuthenticateUserMFARequest.FromString,
+                    response_serializer=test__grpc__service__pb2.AuthenticateUserMFAResponse.SerializeToString,
+            ),
+            'AuthenticateUserMFACode': grpc.unary_unary_rpc_method_handler(
+                    servicer.AuthenticateUserMFACode,
+                    request_deserializer=test__grpc__service__pb2.AuthenticateUserMFACodeRequest.FromString,
+                    response_serializer=test__grpc__service__pb2.AuthenticateUserMFACodeResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -62,5 +94,39 @@ class TestGrpcService(object):
         return grpc.experimental.unary_unary(request, target, '/TestGrpcService/TestGrpcApiRoute',
             test__grpc__service__pb2.TestGrpcApiRouteRequest.SerializeToString,
             test__grpc__service__pb2.TestGrpcApiRouteResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AuthenticateUserMFA(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/TestGrpcService/AuthenticateUserMFA',
+            test__grpc__service__pb2.AuthenticateUserMFARequest.SerializeToString,
+            test__grpc__service__pb2.AuthenticateUserMFAResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AuthenticateUserMFACode(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/TestGrpcService/AuthenticateUserMFACode',
+            test__grpc__service__pb2.AuthenticateUserMFACodeRequest.SerializeToString,
+            test__grpc__service__pb2.AuthenticateUserMFACodeResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
