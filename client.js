@@ -20,7 +20,7 @@ const client = new TestGrpcService(
 );
 
 function callGrpcApi () {
-    client.TestGrpcApiRoute({message: "ping"}, (error, data) => {
+    client.TestGrpcApiRoute({message: "ping from node"}, (error, data) => {
         if (error) throw error
         const { message } = data
         console.log(message);

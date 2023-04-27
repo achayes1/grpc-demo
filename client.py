@@ -8,7 +8,7 @@ import test_grpc_service_pb2
 import test_grpc_service_pb2_grpc
 
 def call_grpc_api(stub):
-    request = test_grpc_service_pb2.TestGrpcApiRouteRequest(message="PING")
+    request = test_grpc_service_pb2.TestGrpcApiRouteRequest(message="ping from python")
     response = stub.TestGrpcApiRoute(request)
     return response
 
@@ -18,7 +18,7 @@ def run():
         stub = test_grpc_service_pb2_grpc.TestGrpcServiceStub(channel)
         print("-------------- Pinging API --------------")
         response = call_grpc_api(stub)
-        print(response)
+        print("received: " + str(response))
 
 if __name__ == '__main__':
     logging.basicConfig()

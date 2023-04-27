@@ -10,6 +10,7 @@ async def serve() -> None:
         TestGrpcService(), server)
     server.add_insecure_port('[::]:50051')
     await server.start()
+    print("Server started")
     await server.wait_for_termination()
 
 
